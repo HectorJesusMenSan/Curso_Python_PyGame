@@ -9,6 +9,11 @@ class Configurations:
     _screen_size = (1280, 720)               # Resolucion pantalla (ancho, alto)
     _game_title = "Snake game de Betho Betho"
     _background = (28, 30, 50)               # Fondo de pantalla en rgb de 0 a 255
+    _fps = 8
+    #Cinfiguraciones de serpiente:
+    _snake_block_size = 80                   #Tamaño del bloque de serpiente
+    _snake_head_color = (180, 1, 1)          #Color de la cabeza
+    _snake_body_color = (78, 23, 9)          #color de cuerpo
 
     @classmethod
     def get_screen_size (cls) ->tuple[int, int]:
@@ -30,3 +35,18 @@ class Configurations:
     def get_background (cls):
 
         return cls._background
+
+    @classmethod
+    def get_fps (cls):
+
+        return cls._fps
+
+    @classmethod
+    def get_snake_block_size (cls):
+        return cls._snake_block_size
+    @classmethod
+    def get_snake_head_color(cls):
+        return cls._snake_head_color
+    @classmethod
+    def get_snake_body_color(cls):
+        return  cls._snake_body_color

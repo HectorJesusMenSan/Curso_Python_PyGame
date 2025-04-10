@@ -1,5 +1,7 @@
 
 import pygame
+
+
 from  Configurationns import Configurations
 from  Snake import SnakeBlock
 
@@ -19,7 +21,7 @@ def game_events ( ) -> bool:
      # Retorna bandera
     return  game_over
 
-def screen_refresh(screen: pygame.surface.Surface, snake_head: SnakeBlock)->None:
+def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, snake_head: SnakeBlock)->None:
     """
     Funcion que administra los elementos visuales.
     :return:
@@ -28,8 +30,11 @@ def screen_refresh(screen: pygame.surface.Surface, snake_head: SnakeBlock)->None
     # Se rellena el objeto pantalla
     screen.fill(Configurations.get_background())
 
+
     #Se dibuja la cabeza
     snake_head.blit(screen)
 
     # Actualizar pantalla
     pygame.display.flip()
+
+    clock.tick(Configurations.get_fps())
