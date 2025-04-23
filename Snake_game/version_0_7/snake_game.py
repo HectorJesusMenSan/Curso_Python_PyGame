@@ -47,16 +47,21 @@ def run_game() -> None:
 
     #Se crea la manzana:
     apple = Apple()
+    apple.random_psition()
+    #Se crea un grupo con manzanas:
+    apples = Group()
+    apples.add(apple)
+
 
     #Ciclo principal de juego:
     game_over = False
     while not game_over:
         # Verificacion de eventos (tecleado, clic y raton) del juego.
-        game_over = game_events(snake_body)
+        game_over = game_events(snake_body, apples)
         #Se administra el movimiento de la serpiente
         snake_movement(snake_body)
         #Se dibujan los elementos graficos en la pantalla
-        screen_refresh(screen, clock, snake_body, apple)
+        screen_refresh(screen, clock, snake_body, apples)
     #Cerrar recursos.
     pygame.quit()
 

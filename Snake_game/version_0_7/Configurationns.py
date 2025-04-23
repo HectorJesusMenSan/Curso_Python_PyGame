@@ -15,6 +15,11 @@ class Configurations:
     _snake_head_color = (180, 1, 1)          #Color de la cabeza
     _snake_body_color = (78, 23, 9)          #color de cuerpo
 
+    #Configuraciones para manzana:
+    _apple_block_size = 80
+    _apple_block_color = (50, 76, 89)
+
+
     @classmethod
     def get_screen_size (cls) ->tuple[int, int]:
         """
@@ -50,3 +55,12 @@ class Configurations:
     @classmethod
     def get_snake_body_color(cls):
         return  cls._snake_body_color
+
+    @classmethod
+    def get_apple_block_size(cls):
+        return cls._apple_block_size
+    @classmethod
+    def get_apple_block_color(cls):
+        return cls._apple_block_color
+
+

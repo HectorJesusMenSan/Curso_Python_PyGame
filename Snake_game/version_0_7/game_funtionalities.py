@@ -7,7 +7,8 @@ from  Snake import SnakeBlock
 from Apple import Apple
 
 
-def game_events ( snake_body: pygame.sprite.Group) -> bool:
+def game_events ( snake_body: pygame.sprite.Group,
+                  apples: pygame.sprite.Group) -> bool:
     """
     Funcion que administra los eventos del juego
     :return: La bandera del fin del juego
@@ -52,6 +53,10 @@ def game_events ( snake_body: pygame.sprite.Group) -> bool:
                 new_snake_block = SnakeBlock()
                 snake_body.add(new_snake_block)
 
+                new_apple = Apple()
+                new_apple.random_psition()
+                apples.add(new_apple)
+
      # Retorna bandera
     return  game_over
 
@@ -81,7 +86,7 @@ def snake_movement (snake_body: pygame.sprite.Group)->None:
         head.rect.y += Configurations.get_snake_block_size()
 
 
-def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, snake_body: pygame.sprite.Group, apple: Apple)->None:
+def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, snake_body: pygame.sprite.Group, apples: pygame.sprite.Group)->None:
     """
     Funcion que administra los elementos visuales.
     :return:
@@ -96,7 +101,7 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
         snake_block.blit(screen)
 
     #Se dibuja la manzana
-    apple.blit(screen)
+    apples.draw(screen)
     # Actualizar pantalla
     pygame.display.flip()
 
