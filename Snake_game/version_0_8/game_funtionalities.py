@@ -87,6 +87,36 @@ def snake_movement (snake_body: pygame.sprite.Group)->None:
     elif SnakeBlock.get_is_moving_down():
         head.rect.y += Configurations.get_snake_block_size()
 
+def check_collisions (screen: pygame.surface.Surface, snake_body: pygame.sprite.Group, apples: pygame.sprite.Group)->bool:
+    """
+    Funcion que revisa las colisiones del juego.
+    -Cabeza de serpiente con el cuerpo
+    _cabeza de serpiente con el borde de pantalla
+    -Cabeza de serpiente con manzana
+    :param screen: Pantalla
+    :param snake_body: cuerpo de serpiente
+    :param apples: Grupo con las manzanas
+    :return: bandera de fin de juego
+    """
+    #Se declara bandera de fin de juego
+    game_over = False
+    #Se obtiene la cabeza de serpiente
+    head = snake_body.sprites()[0]
+
+    #Se revisa la condicion de la cabeza de la serpiente con el borde:
+    screen_rect = screen.get_rect()
+
+    if head.rect.right > screen_rect.right :
+        game_over = True
+    if head.rect.left < screen_rect.left:
+        game_over = True
+    if head.rect.top < screen_rect.top:
+        game_over = True
+    if head.rect.bottom > screen_rect.bottom:
+        game_over = True
+    return game_over
+
+
 
 def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, snake_body: pygame.sprite.Group, apples: pygame.sprite.Group)->None:
     """

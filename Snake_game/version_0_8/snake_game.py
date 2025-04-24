@@ -1,9 +1,9 @@
 """
 Nombre:
 Fecha:
-Descripcion: Se agrega la manzana
+Descripcion: Se agregan las colisiones
 
-Version 0.7:
+Version 0.8:
 
 """
 
@@ -12,10 +12,12 @@ import pygame
 
 from Configurationns import Configurations
 from Apple import Apple
+from game_funtionalities import check_collisions
 from game_funtionalities import snake_movement
 from game_funtionalities import screen_refresh
 from game_funtionalities import  game_events
 import game_funtionalities
+
 
 from Snake import  SnakeBlock
 from pygame.sprite import Group
@@ -60,6 +62,8 @@ def run_game() -> None:
         game_over = game_events(snake_body, apples)
         #Se administra el movimiento de la serpiente
         snake_movement(snake_body)
+        #Se revisan las colisiones:
+        game_over = check_collisions(screen, snake_body, apples)
         #Se dibujan los elementos graficos en la pantalla
         screen_refresh(screen, clock, snake_body, apples)
     #Cerrar recursos.
