@@ -52,4 +52,8 @@ class Apple(Sprite):
                     repeat = False
     @classmethod
     def get_no_manzanas (cls)->int:
+        """
+        Gueter para acceder al numero de manzanas
+        :return:
+        """
         return cls._no_manzanas

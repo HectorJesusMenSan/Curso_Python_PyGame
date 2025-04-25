@@ -15,7 +15,7 @@ from Apple import Apple
 from game_funtionalities import check_collisions
 from game_funtionalities import snake_movement
 from game_funtionalities import screen_refresh
-from game_funtionalities import  game_events
+from game_funtionalities import  game_events, game_over_screen
 import game_funtionalities
 
 
@@ -59,13 +59,22 @@ def run_game() -> None:
     game_over = False
     while not game_over:
         # Verificacion de eventos (tecleado, clic y raton) del juego.
-        game_over = game_events(snake_body, apples)
+        game_over = game_events()
+        #Condicion si se cierra ventana:
+        if game_over:
+            break
         #Se administra el movimiento de la serpiente
         snake_movement(snake_body)
         #Se revisan las colisiones:
         game_over = check_collisions(screen, snake_body, apples)
+
         #Se dibujan los elementos graficos en la pantalla
         screen_refresh(screen, clock, snake_body, apples)
+
+        #Si pierde jugador se muestra pantalla de fin de juego:
+        if game_over:
+            game_over_screen()
+
     #Cerrar recursos.
     pygame.quit()
 

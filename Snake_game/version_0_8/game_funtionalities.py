@@ -1,3 +1,4 @@
+import time
 
 import pygame
 
@@ -7,8 +8,7 @@ from  Snake import SnakeBlock
 from Apple import Apple
 
 
-def game_events ( snake_body: pygame.sprite.Group,
-                  apples: pygame.sprite.Group) -> bool:
+def game_events () -> bool:
     """
     Funcion que administra los eventos del juego
     :return: La bandera del fin del juego
@@ -48,16 +48,7 @@ def game_events ( snake_body: pygame.sprite.Group,
                 SnakeBlock.set_is_moving_up(False)
                 SnakeBlock.set_is_moving_down(True)
 
-            #Si lo que se preciona es un espacio
-            if event.key == pygame.K_SPACE:
-                new_snake_block = SnakeBlock()
-                snake_body.add(new_snake_block)
-                #print(Apple.get_no_manzanas())
 
-                new_apple = Apple()
-                new_apple.random_psition(snake_body)
-                apples.remove(apples.sprites()[0])
-                apples.add(new_apple)
 
      # Retorna bandera
     return  game_over
@@ -114,7 +105,28 @@ def check_collisions (screen: pygame.surface.Surface, snake_body: pygame.sprite.
         game_over = True
     if head.rect.bottom > screen_rect.bottom:
         game_over = True
+
+    #Se revisa la condicion de la cabeza con el cuerpo de la serpiente
+    head_body_collisions = pygame.sprite.spritecollide(head, snake_body, dokill=False)
+    if len(head_body_collisions)>1 :
+        game_over = True
+
+    #Se revisa la condicion de la cabeza con la manzana
+    head_apple_collisions = pygame.sprite.spritecollide(head, apples, dokill=True)
+    if len(head_apple_collisions)>0:
+        new_snake_block = SnakeBlock()
+        new_snake_block.rect.x = snake_body.sprites()[-1].rect.x
+        new_snake_block.rect.y = snake_body.sprites()[-1].rect.y
+        snake_body.add(new_snake_block)
+
+        new_apple = Apple()
+        new_apple.random_psition(snake_body)
+        apples.add(new_apple)
+
+
     return game_over
+
+
 
 
 
@@ -138,3 +150,12 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
     pygame.display.flip()
 
     clock.tick(Configurations.get_fps())
+
+
+def game_over_screen():
+    """
+    Funcion con la parte del fin del juego.
+    :return:
+    """
+
+    time.sleep(Configurations.get_game_over_screen_time())

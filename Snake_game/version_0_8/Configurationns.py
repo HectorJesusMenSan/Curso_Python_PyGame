@@ -10,6 +10,7 @@ class Configurations:
     _game_title = "Snake game de Betho Betho"
     _background = (28, 30, 50)               # Fondo de pantalla en rgb de 0 a 255
     _fps = 8
+    _game_over_screen_time = 3
     #Cinfiguraciones de serpiente:
     _snake_block_size = 80                   #Tamaño del bloque de serpiente
     _snake_head_color = (180, 1, 1)          #Color de la cabeza
@@ -43,11 +44,18 @@ class Configurations:
 
     @classmethod
     def get_fps (cls):
-
         return cls._fps
 
     @classmethod
+    def get_game_over_screen_time (cls):
+        return cls._game_over_screen_time
+
+    @classmethod
     def get_snake_block_size (cls):
+        """
+        getter para el tamaño de serpiente
+        :return:
+        """
         return cls._snake_block_size
     @classmethod
     def get_snake_head_color(cls):
