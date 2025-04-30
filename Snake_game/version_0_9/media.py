@@ -2,6 +2,7 @@
 
 import pygame
 from Configurationns import  Configurations
+from random import randint
 
 class Background:
     """
@@ -24,17 +25,3 @@ class Background:
         :return:
         """
         screen.blit(self.image, self.rect)
-
-class Apple_image:
-    """
-    Clase que contiene el fondo de la manzana
-    """
-    def __init__(self):
-        apple_image_path = Configurations.get_apple_image_path()
-        self.image = pygame.image.load(apple_image_path)
-        #Se escala la imagen de manzana
-        apple_size = Configurations.get_apple_block_size()
-        self.image = pygame.transform.scale(self.image, apple_size)
-        self.rect = self.image.get_rect()
-
-

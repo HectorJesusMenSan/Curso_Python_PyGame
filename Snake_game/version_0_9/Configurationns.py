@@ -1,3 +1,6 @@
+from random import choice
+
+
 class Configurations:
     """
     Clase que contiene todas las configuraciones
@@ -18,11 +21,14 @@ class Configurations:
 
     #Configuraciones para manzana:
     _apple_block_size = 80
-   # _apple_block_color = (50, 76, 89)
+    #_apple_block_color = (50, 76, 89)
 
     #Rutas de archivos multimedia
     _background_image_path = "../media/background_image.jpg"
     _apple_image_path = "../media/apple1.png"
+    _snake_body_image_path =["../media/body1.png", "../media/body2.png", "../media/body3.png"]
+    _snake_head_image_path = "../media/head1.png"
+
 
     @classmethod
     def get_screen_size (cls) ->tuple[int, int]:
@@ -70,9 +76,9 @@ class Configurations:
     @classmethod
     def get_apple_block_size(cls):
         return cls._apple_block_size
-    @classmethod
+    """@classmethod
     def get_apple_block_color(cls):
-        return cls._apple_block_color
+        return cls._apple_block_color"""
 
     @classmethod
     def get_background_image_path(cls)->str:
@@ -86,3 +92,10 @@ class Configurations:
         :return:
         """
         return cls._apple_image_path
+
+    @classmethod
+    def get_snake_head_image_path (cls):
+        return cls._snake_head_image_path
+    @classmethod
+    def get_snake_body_image_path (cls):
+        return cls._snake_body_image_path

@@ -1,6 +1,6 @@
 import pygame
+from pygame.examples.cursors import image
 from pygame.sprite import Sprite
-import Configurationns
 from random import randint
 
 from Configurationns import Configurations
@@ -14,9 +14,11 @@ class Apple(Sprite):
 
         Apple._no_manzanas += 1
 
-        self.image = pygame.Surface((Configurations.get_apple_block_size(), Configurations.get_snake_block_size()))
-        self.image.fill(Configurations.get_apple_block_color())
-
+        #self.image = pygame.Surface((Configurations.get_apple_block_size(), Configurations.get_snake_block_size()))
+        #self.image.fill(Configurations.get_apple_block_color())
+        self.image = pygame.image.load(Configurations.get_apple_image_path())
+        apple_block_size = Configurations.get_apple_block_size()
+        self.image = pygame.transform.scale(self.image, (apple_block_size, apple_block_size))
         self.rect = self.image.get_rect()
 
     def blit(self, screen: pygame.surface.Surface)->None:

@@ -6,6 +6,7 @@ import pygame
 from  Configurationns import Configurations
 from  Snake import SnakeBlock
 from Apple import Apple
+
 from media import Background
 
 
@@ -147,6 +148,7 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
 
     #Se dibuja la manzana
     apples.draw(screen)
+
 
 
     #Se dibuja cuerpo de serpiente

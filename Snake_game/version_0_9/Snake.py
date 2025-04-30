@@ -3,7 +3,7 @@ import pygame
 from pygame.examples.cursors import image
 from pygame.sprite import Sprite
 from Configurationns import Configurations
-from random import  randint
+from random import randint, random, choice
 
 
 class SnakeBlock(Sprite):
@@ -19,14 +19,19 @@ class SnakeBlock(Sprite):
         """
         super().__init__()
         if is_head:
-            color = Configurations.get_snake_head_color()
+            #color = Configurations.get_snake_head_color()
+            self.image = pygame.image.load(Configurations.get_snake_head_image_path())
         else:
-            color =  Configurations.get_snake_body_color()
+            #color =  Configurations.get_snake_body_color()
+            #body_images= ["../media/body1.png", "../media/body2.png", "../media/body3.png"]
+            path = choice(Configurations.get_snake_body_image_path())
+            self.image = pygame.image.load(path)
 
         snake_block_size = Configurations.get_snake_block_size()
         #Crear cuadro y darle color
-        self.image = pygame.Surface((snake_block_size, snake_block_size))
-        self.image.fill(color)
+        #self.image = pygame.Surface((snake_block_size, snake_block_size))
+        #self.image.fill(color)
+        self.image = pygame.transform.scale(self.image, (snake_block_size, snake_block_size))
 
         #Obtener rectangulo
         self.rect = self.image.get_rect()
@@ -37,7 +42,15 @@ class SnakeBlock(Sprite):
         :param screen:
         :return:
         """
-        screen.blit(self.image, self.rect)
+        angle = 0
+        if SnakeBlock.get_is_moving_up():
+            angle = 90
+        elif SnakeBlock.get_is_moving_left():
+            angle = 180
+        elif SnakeBlock.get_is_moving_down():
+            angle = 270
+        image_flip = pygame.transform.rotate(self.image, angle)
+        screen.blit(image_flip, self.rect)
 
     def snake_head_init(self):
         screen_width = Configurations.get_screen_size()[0]

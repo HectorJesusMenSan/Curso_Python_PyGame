@@ -10,7 +10,6 @@ Version 0.8:
 #Importar modulos para videojuego
 import pygame
 from Apple import Apple
-from media import Apple_image
 from media import Background
 from game_funtionalities import check_collisions
 from game_funtionalities import snake_movement
@@ -48,7 +47,7 @@ def run_game() -> None:
     snake_body.add(snake_head)
 
     #Se crea la manzana:
-    apple = Apple_image()
+    apple = Apple()
     apple.random_psition(snake_body)
     #Se crea un grupo con manzanas:
     apples = Group()
