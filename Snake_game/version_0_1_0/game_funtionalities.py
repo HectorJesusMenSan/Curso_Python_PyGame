@@ -146,9 +146,6 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
     # Se rellena el objeto pantalla
     #screen.fill(Configurations.get_background())
 
-
-    #Se anima el movimiento de manzana
-    apples.sprites()[0].animate_apple()
     #Se dibuja la manzana
     apples.draw(screen)
 
