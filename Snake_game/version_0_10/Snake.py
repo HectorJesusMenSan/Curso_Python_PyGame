@@ -91,6 +91,7 @@ class SnakeBlock(Sprite):
 
 
 
+
     @classmethod
     def get_is_moving_right(cls)->bool:
         """

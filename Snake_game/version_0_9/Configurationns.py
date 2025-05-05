@@ -7,6 +7,7 @@ class Configurations:
     del juego.
     Encapsulamiento: solo getter
     """
+
     # Configuraciones de pantalla.
     _screen_size = (1280, 720)               # Resolucion pantalla (ancho, alto)
     _game_title = "Snake game de Betho Betho"

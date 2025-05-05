@@ -8,6 +8,7 @@ class Background:
     """
     Clase que contiene fonfo de pantalla
     """
+
     def __init__(self):
         background_image_path = Configurations.get_background_image_path()
         self.image = pygame.image.load(background_image_path)

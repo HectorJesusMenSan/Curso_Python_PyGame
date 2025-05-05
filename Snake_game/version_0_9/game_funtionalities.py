@@ -17,6 +17,7 @@ def game_events () -> bool:
     :return: La bandera del fin del juego
 
     """
+
     game_over = False
     # Verificacion de eventos (tecleado, clic y raton) del juego.
     for event in pygame.event.get():

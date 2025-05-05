@@ -8,6 +8,7 @@ from Configurationns import Configurations
 
 class Apple(Sprite):
     #Atributo de clase para la puntuacion.
+
     _no_manzanas = 0
     def __init__(self):
         super().__init__()

@@ -37,6 +37,7 @@ class Configurations:
     #Configuracion de animacion:
     _time_to_refresh = 200
 
+
     @classmethod
     def get_screen_size (cls) ->tuple[int, int]:
         """
