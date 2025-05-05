@@ -25,9 +25,17 @@ class Configurations:
 
     #Rutas de archivos multimedia
     _background_image_path = "../media/background_image.jpg"
-    _apple_image_path = "../media/apple1.png"
+    _apple_image_path = ["../media/apple1.png",
+                         "../media/apple2.png",
+                         "../media/apple3.png",]
     _snake_body_image_path =["../media/body1.png", "../media/body2.png", "../media/body3.png"]
-    _snake_head_image_path = "../media/head1.png"
+    _snake_head_image_path = ["../media/head1.png", "../media/head2.png",
+                              "../media/head3.png", "../media/head4.png",
+                              "../media/head5.png", "../media/head6.png",
+                              "../media/head7.png", "../media/head8.png"]
+
+    #Configuracion de animacion:
+    _time_to_refresh = 200
 
 
     @classmethod
@@ -37,7 +45,6 @@ class Configurations:
         :return:
         """
         return cls._screen_size
-
     @classmethod
     def get_game_title(cls)->str:
         """
@@ -45,20 +52,12 @@ class Configurations:
         :return:
         """
         return cls._game_title
-
-    """@classmethod
-    def get_background (cls):
-
-        return cls._background"""
-
     @classmethod
     def get_fps (cls):
         return cls._fps
-
     @classmethod
     def get_game_over_screen_time (cls):
         return cls._game_over_screen_time
-
     @classmethod
     def get_snake_block_size (cls):
         """
@@ -72,19 +71,13 @@ class Configurations:
     @classmethod
     def get_snake_body_color(cls):
         return  cls._snake_body_color
-
     @classmethod
     def get_apple_block_size(cls):
         return cls._apple_block_size
-    """@classmethod
-    def get_apple_block_color(cls):
-        return cls._apple_block_color"""
-
     @classmethod
     def get_background_image_path(cls)->str:
         """getter para """
         return cls._background_image_path
-
     @classmethod
     def get_apple_image_path(cls):
         """
@@ -92,10 +85,12 @@ class Configurations:
         :return:
         """
         return cls._apple_image_path
-
     @classmethod
     def get_snake_head_image_path (cls):
         return cls._snake_head_image_path
     @classmethod
     def get_snake_body_image_path (cls):
         return cls._snake_body_image_path
+    @classmethod
+    def get_time_to_refresh(cls):
+        return cls._time_to_refresh

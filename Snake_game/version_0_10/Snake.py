@@ -19,18 +19,28 @@ class SnakeBlock(Sprite):
         """
         super().__init__()
         if is_head:
-            #color = Configurations.get_snake_head_color()
-            self.image = pygame.image.load(Configurations.get_snake_head_image_path())
+
+            #self.image = pygame.image.load(Configurations.get_snake_head_image_path())
+            head_block_size = Configurations.get_snake_block_size()
+            self._head_frames = []
+            for i in range(len(Configurations.get_snake_head_image_path())):
+                frame = pygame.image.load(Configurations.get_snake_head_image_path()[i])
+                frame = pygame.transform.scale(frame, (head_block_size, head_block_size))
+                self._head_frames.append(frame)
+
+            self._last_update_time = pygame.time.get_ticks()
+            self._frame_index = 0
+
+            self.image = self._head_frames[self._frame_index]
+            self._frame_index = 1
+
+            self.rect = self.image.get_rect()
         else:
-            #color =  Configurations.get_snake_body_color()
-            #body_images= ["../media/body1.png", "../media/body2.png", "../media/body3.png"]
+
             path = choice(Configurations.get_snake_body_image_path())
             self.image = pygame.image.load(path)
 
         snake_block_size = Configurations.get_snake_block_size()
-        #Crear cuadro y darle color
-        #self.image = pygame.Surface((snake_block_size, snake_block_size))
-        #self.image.fill(color)
         self.image = pygame.transform.scale(self.image, (snake_block_size, snake_block_size))
 
         #Obtener rectangulo
@@ -59,6 +69,28 @@ class SnakeBlock(Sprite):
 
         self.rect.x = snake_block_size*randint(0, (screen_width//snake_block_size)-1)
         self.rect.y = snake_block_size*randint(0, (screen_height//snake_block_size)-1)
+
+    def animate_head(self)->None:
+        """
+        Se utiliza para actualizar el frame visible de la manzana dando
+        la impresion de movimiento
+        :return:
+        """
+        current_time = pygame.time.get_ticks()
+        time_to_refresh = Configurations.get_time_to_refresh()
+
+        needs_refresh = (current_time - self._last_update_time) >= time_to_refresh
+
+        if needs_refresh:
+            self.image = self._head_frames[self._frame_index]
+            self._last_update_time = current_time
+            self._frame_index += 1
+            if self._frame_index >= len(self._head_frames):
+                self._frame_index = 0
+
+
+
+
 
 
     @classmethod

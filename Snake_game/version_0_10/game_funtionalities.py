@@ -142,23 +142,24 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
 
     #Se dibuja el fondo de la pantalla:
     background.blit(screen)
-    # Se dibujam elementos graficos en pantalla:
-    # Se rellena el objeto pantalla
-    #screen.fill(Configurations.get_background())
+
+    #Se anima el movimiento de manzana
+    apples.sprites()[0].animate_apple()
+
+    snake_body.sprites()[0].animate_head()
 
     #Se dibuja la manzana
     apples.draw(screen)
 
-
-
     #Se dibuja cuerpo de serpiente
     for snake_block in reversed(snake_body.sprites()):
+
         snake_block.blit(screen)
 
-    # Actualizar pantalla
-    pygame.display.flip()
 
     clock.tick(Configurations.get_fps())
+    # Actualizar pantalla
+    pygame.display.flip()
 
 
 def game_over_screen():

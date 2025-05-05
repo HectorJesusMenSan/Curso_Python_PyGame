@@ -1,10 +1,7 @@
 import pygame
-
 from pygame.sprite import Sprite
 from random import randint
-
 from Configurationns import Configurations
-
 
 class Apple(Sprite):
     #Atributo de clase para la puntuacion.
@@ -14,12 +11,28 @@ class Apple(Sprite):
 
         Apple._no_manzanas += 1
 
+
         #self.image = pygame.Surface((Configurations.get_apple_block_size(), Configurations.get_snake_block_size()))
         #self.image.fill(Configurations.get_apple_block_color())
-        self.image = pygame.image.load(Configurations.get_apple_image_path())
+        #self.image = pygame.image.load(Configurations.get_apple_image_path()[0])
         apple_block_size = Configurations.get_apple_block_size()
-        self.image = pygame.transform.scale(self.image, (apple_block_size, apple_block_size))
+
+        self._apple_frames = []
+        for i in range (len(Configurations.get_apple_image_path())):
+
+            frame = pygame.image.load(Configurations.get_apple_image_path()[i])
+            frame = pygame.transform.scale(frame, (apple_block_size, apple_block_size))
+            self._apple_frames.append(frame)
+        self._last_update_time = pygame.time.get_ticks()
+        self._frame_index = 0
+
+        self.image = self._apple_frames[self._frame_index]
+        self._frame_index = 1
+
         self.rect = self.image.get_rect()
+
+
+
 
     def blit(self, screen: pygame.surface.Surface)->None:
         """
@@ -52,6 +65,25 @@ class Apple(Sprite):
                     break
                 else:
                     repeat = False
+
+    def animate_apple(self)->None:
+        """
+        Se utiliza para actualizar el frame visible de la mansana dando
+        la impresion de movimiento
+        :return:
+        """
+        current_time = pygame.time.get_ticks()
+        time_to_refresh = Configurations.get_time_to_refresh()
+
+        needs_refresh = (current_time - self._last_update_time) >= time_to_refresh
+
+        if needs_refresh:
+            self.image = self._apple_frames[self._frame_index]
+            self._last_update_time = current_time
+            self._frame_index += 1
+            if self._frame_index >= len(self._apple_frames):
+                self._frame_index = 0
+
     @classmethod
     def get_no_manzanas (cls)->int:
         """
