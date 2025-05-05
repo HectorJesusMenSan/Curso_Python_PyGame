@@ -161,7 +161,6 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
     # Actualizar pantalla
     pygame.display.flip()
 
-
 def game_over_screen():
     """
     Funcion con la parte del fin del juego.

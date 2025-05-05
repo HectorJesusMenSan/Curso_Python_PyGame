@@ -6,7 +6,6 @@ Descripcion: Se agregan las colisiones
 Version 0.8:
 
 """
-
 #Importar modulos para videojuego
 import pygame
 from Apple import Apple

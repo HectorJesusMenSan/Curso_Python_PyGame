@@ -5,7 +5,6 @@ from pygame.sprite import Sprite
 from Configurationns import Configurations
 from random import randint, random, choice
 
-
 class SnakeBlock(Sprite):
     #Atributos de clase con banderas de movimiento de la serpiente
     _is_moving_right = False

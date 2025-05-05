@@ -33,7 +33,6 @@ class Apple(Sprite):
 
 
 
-
     def blit(self, screen: pygame.surface.Surface)->None:
         """
         Se utliza para crear la manzana

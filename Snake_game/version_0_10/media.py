@@ -3,7 +3,6 @@
 import pygame
 from Configurationns import  Configurations
 from random import randint
-
 class Background:
     """
     Clase que contiene fonfo de pantalla
