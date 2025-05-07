@@ -3,8 +3,9 @@ import pygame
 from  Configurationns import Configurations
 from  Snake import SnakeBlock
 from Apple import Apple
-from media import Background
-from media import Audio
+from media import GameOverImage
+from media import Scoreboard, Background, Audio
+
 
 
 
@@ -78,7 +79,8 @@ def snake_movement (snake_body: pygame.sprite.Group)->None:
     elif SnakeBlock.get_is_moving_down():
         head.rect.y += Configurations.get_snake_block_size()
 
-def check_collisions (screen: pygame.surface.Surface, snake_body: pygame.sprite.Group, apples: pygame.sprite.Group, audio:Audio)->bool:
+def check_collisions (screen: pygame.surface.Surface, snake_body: pygame.sprite.Group, apples: pygame.sprite.Group,
+                      audio:Audio, scoreboard: Scoreboard)->bool:
     """
     Funcion que revisa las colisiones del juego.
     -Cabeza de serpiente con el cuerpo
@@ -99,11 +101,11 @@ def check_collisions (screen: pygame.surface.Surface, snake_body: pygame.sprite.
 
     if head.rect.right > screen_rect.right :
         game_over = True
-    if head.rect.left < screen_rect.left:
+    elif head.rect.left < screen_rect.left:
         game_over = True
-    if head.rect.top < screen_rect.top:
+    elif head.rect.top < screen_rect.top:
         game_over = True
-    if head.rect.bottom > screen_rect.bottom:
+    elif head.rect.bottom > screen_rect.bottom:
         game_over = True
 
     #Se revisa la condicion de la cabeza con el cuerpo de la serpiente
@@ -123,6 +125,7 @@ def check_collisions (screen: pygame.surface.Surface, snake_body: pygame.sprite.
         new_apple.random_psition(snake_body)
         apples.add(new_apple)
         audio.play_eats_sound()
+        scoreboard.update(Apple.get_no_manzanas()-1)
 
 
     return game_over
@@ -132,7 +135,7 @@ def check_collisions (screen: pygame.surface.Surface, snake_body: pygame.sprite.
 
 
 def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, snake_body: pygame.sprite.Group, apples: pygame.sprite.Group,
-                   background: Background)->None:
+                   background: Background, scoreboard: Scoreboard)->None:
     """
     Funcion que administra los elementos visuales.
     :return:
@@ -143,6 +146,7 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
 
     #Se anima el movimiento de manzana
     apples.sprites()[0].animate_apple()
+    scoreboard.blit(screen)
 
     snake_body.sprites()[0].animate_head()
 
@@ -155,6 +159,8 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
         snake_block.blit(screen)
 
 
+
+
     clock.tick(Configurations.get_fps())
     # Actualizar pantalla
     pygame.display.flip()
@@ -165,7 +171,12 @@ def game_over_screen(audio: Audio):
     Funcion con la parte del fin del juego.
     :return:
     """
+    game_over_image = GameOverImage()
     audio.music_fadeout(time=Configurations.get_music_fadeout_time())
-    audio.play_game_over()
 
+    game_over_image.blit(screen)
+    pygame.display.flip()
+
+    audio.play_game_over()
     time.sleep(Configurations.get_game_over_screen_time())
+

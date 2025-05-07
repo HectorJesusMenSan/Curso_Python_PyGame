@@ -10,17 +10,15 @@ Version 0.8:
 #Importar modulos para videojuego
 import pygame
 from Apple import Apple
-from Snake_game.version_0_11.media import Audio
-from media import Background
+from media import Background, Audio, Scoreboard
 from game_funtionalities import check_collisions
 from game_funtionalities import snake_movement
 from game_funtionalities import screen_refresh
 from game_funtionalities import  game_events, game_over_screen
-
-
 from Snake import  SnakeBlock
 from pygame.sprite import Group
 from Configurationns import Configurations
+
 
 def run_game() -> None:
     """
@@ -61,6 +59,9 @@ def run_game() -> None:
     audio.play_music(volume=Configurations.get_music_volume())
     audio.play_start_sound()
 
+    #Se crea el Scoreboard
+    scoreboard = Scoreboard()
+
 
     #Ciclo principal de juego:
     game_over = False
@@ -73,10 +74,10 @@ def run_game() -> None:
         #Se administra el movimiento de la serpiente
         snake_movement(snake_body)
         #Se revisan las colisiones:
-        game_over = check_collisions(screen, snake_body, apples, audio)
+        game_over = check_collisions(screen, snake_body, apples, audio, scoreboard)
 
         #Se dibujan los elementos graficos en la pantalla
-        screen_refresh(screen, clock, snake_body, apples, background)
+        screen_refresh(screen, clock, snake_body, apples, background, scoreboard)
 
         #Si pierde jugador se muestra pantalla de fin de juego:
         if game_over:
