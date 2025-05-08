@@ -81,7 +81,7 @@ def run_game() -> None:
 
         #Si pierde jugador se muestra pantalla de fin de juego:
         if game_over:
-            game_over_screen(audio)
+            game_over_screen(audio, screen)
 
     #Cerrar recursos.
     pygame.quit()

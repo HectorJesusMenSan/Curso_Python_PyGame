@@ -166,7 +166,7 @@ def screen_refresh(screen: pygame.surface.Surface, clock: pygame.time.Clock, sna
     pygame.display.flip()
 
 
-def game_over_screen(audio: Audio):
+def game_over_screen(audio: Audio, screen):
     """
     Funcion con la parte del fin del juego.
     :return:

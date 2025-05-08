@@ -99,7 +99,7 @@ class GameOverImage:
         #Centrar la imagen en la pantalla
         self.rect.centerx = screen.get_rect().centerx
         self.rect.bottom = screen.get_rect().bottom - Configurations.get_snake_block_size()
-        self.blit(self.image, self.rect)
+        screen.blit(self.image, self.rect)
 
 
 
