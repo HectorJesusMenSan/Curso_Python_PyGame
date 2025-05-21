@@ -5,6 +5,7 @@ archivos para controlar mas la organzicion del codigo y evitar que crezca
 demasiado.
 
 Archivos agregados:
+        
         Configurations: Este archivo guarda todos los datos en codigo duro, para facilitar su
         busqueda y su futura actualizacion, cada dato cuenta con su metodo clave de acceso.
         
