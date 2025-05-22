@@ -26,7 +26,7 @@ class Configurations:
     #Rutas de archivos multimedia
     _background_image_path = "../media/background_image.jpg"
     _apple_image_path = "../media/apple1.png"
-    _snake_body_image_path =["../media/body1.png", "../media/body2.png", "../media/body3.png"]
+    _snake_body_image_path =["../Media/body1.png", "../Media/body2.png", "../Media/body3.png"]
     _snake_head_image_path = "../media/head1.png"
 
 

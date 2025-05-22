@@ -24,14 +24,14 @@ class Configurations:
 
     #Rutas de archivos multimedia
     _background_image_path = "../media/background_image.jpg"
-    _apple_image_path = ["../media/apple1.png",
-                         "../media/apple2.png",
-                         "../media/apple3.png",]
-    _snake_body_image_path =["../media/body1.png", "../media/body2.png", "../media/body3.png"]
-    _snake_head_image_path = ["../media/head1.png", "../media/head2.png",
-                              "../media/head3.png", "../media/head4.png",
-                              "../media/head5.png", "../media/head6.png",
-                              "../media/head7.png", "../media/head8.png"]
+    _apple_image_path = ["../Media/apple1.png",
+                         "../Media/apple2.png",
+                         "../Media/apple3.png",]
+    _snake_body_image_path =["../Media/body1.png", "../Media/body2.png", "../Media/body3.png"]
+    _snake_head_image_path = ["../Media/head1.png", "../Media/head2.png",
+                              "../Media/head3.png", "../Media/head4.png",
+                              "../Media/head5.png", "../Media/head6.png",
+                              "../Media/head7.png", "../Media/head8.png"]
 
     #Configuracion de animacion:
     _time_to_refresh = 200

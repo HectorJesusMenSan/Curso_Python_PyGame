@@ -23,7 +23,7 @@ class SnakeBlock(Sprite):
             self.image = pygame.image.load(Configurations.get_snake_head_image_path())
         else:
             #color =  Configurations.get_snake_body_color()
-            #body_images= ["../media/body1.png", "../media/body2.png", "../media/body3.png"]
+            #body_images= ["../Media/body1.png", "../Media/body2.png", "../Media/body3.png"]
             path = choice(Configurations.get_snake_body_image_path())
             self.image = pygame.image.load(path)
 

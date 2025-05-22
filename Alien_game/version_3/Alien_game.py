@@ -9,7 +9,6 @@ Version 0.2:
 
 #Importar modulos para videojuego
 import pygame
-
 from Soldier import Soldier
 from Media import Background
 from game_funtionalities import game_events, screen_refresh

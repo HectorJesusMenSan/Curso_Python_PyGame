@@ -12,8 +12,8 @@ class Configurations:
     _soldier_size = (260,260)
 
     #Imagenes de juego
-    _background_image_path = "../media/jungla_image.jpg"
-    _soldier_image_path = "../media/soldier_image.jpg"
+    _background_image_path = "../Media/jungla_image.jpg"
+    _soldier_image_path = "../Media/soldier_image.jpg"
 
     @classmethod
     def get_screen_size (cls) ->tuple[int, int]:
