@@ -35,7 +35,7 @@ def run_game() -> None:
     #Se crea objeto Backgraund:
     background = Background()
     #Se crea objeto Soldado
-    soldier = Soldier()
+    soldier = Soldier(screen)
 
     #Ciclo principal de juego:
     game_over = False
