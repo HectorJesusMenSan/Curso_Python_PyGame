@@ -8,6 +8,7 @@ class Soldier(Sprite):
         super().__init__()
         soldier_image_path = Configurations.get_soldier_image_path()
         self.image = pygame.image.load(soldier_image_path)
+
         #Se escala la imagen al tamaño del soldado
         image_soldier_size = Configurations.get_soldier_size()
         self.image = pygame.transform.scale(self.image, image_soldier_size)
@@ -20,6 +21,11 @@ class Soldier(Sprite):
         self._is_moving_up = False
         self._is_moving_down = False
 
+        #Velocidad de movimiento
+        self._speed = Configurations.get_soldier_speed()
+        self._rect_y = float(self.rect.y)
+
+
     def blit(self, screen: pygame.surface.Surface):
         """
         Se utiliza pra dibujar el fondo.
@@ -28,12 +34,22 @@ class Soldier(Sprite):
         """
         screen.blit(self.image, self.rect)
 
-    def update_position(self):
+    def update_position(self, screen):
+
+
         #Actualizar posiciones:
         if self._is_moving_up:
-            self.rect.y -=10
+            self._rect_y -= self._speed
         if self._is_moving_down:
-            self.rect.y +=10
+            self._rect_y += self._speed
+
+        screen_rect = screen.get_rect()
+        if self._rect_y < float(screen_rect.top):
+            self._rect_y = float(screen_rect.top)
+        elif self._rect_y > float(screen_rect.bottom - self.image.get_height()):
+            self._rect_y = float(screen_rect.bottom)
+        self.rect.y = self._rect_y
+
     @property
     def is_moving_up(self):
         return self._is_moving_up

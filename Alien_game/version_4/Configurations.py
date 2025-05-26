@@ -11,7 +11,8 @@ class Configurations:
     #_background = (12, 55, 65)               # Fondo de pantalla en rgb de 0 a 255
     _soldier_size = (160,160)
     #Fps para correr juego:
-    _fps = 40
+    _fps = 8
+    _soldier_speed = 10
 
     #Imagenes de juego
     _background_image_path = "../Media/jungla_image.jpg"
@@ -52,3 +53,7 @@ class Configurations:
     @classmethod
     def get_fps(cls):
         return cls._fps
+
+    @classmethod
+    def get_soldier_speed(cls):
+        return cls._soldier_speed
