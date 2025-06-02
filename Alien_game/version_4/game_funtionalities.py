@@ -44,14 +44,13 @@ def screen_refresh(screen: pygame.surface.Surface, background: Background, soldi
     #screen.fill(Configurations.get_background())
     background.blit(screen)
 
-    #Actualizar valores de soldado
-    soldier.update_position()
-
+    # Se actualiza la posición del soldado, se anima su sprite y se dibuja en la pantalla.
+    soldier.update_position(screen)
+    soldier.update_animation()
     soldier.blit(screen)
 
-
-    # Actualizar pantalla
+    # Se actualiza la pantalla, dando la impresión de movimiento.
     pygame.display.flip()
 
-    #Controla la velocidad de pantalla:
+    # Se controla la velocidad de fotogramas (FPS) del videojuego.
     clock.tick(Configurations.get_fps())

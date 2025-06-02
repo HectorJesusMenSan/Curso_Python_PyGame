@@ -9,14 +9,19 @@ class Configurations:
     _screen_size = (1280, 720)               # Resolucion pantalla (ancho, alto)
     _game_title = "Alien Game de Me'Sant"
     #_background = (12, 55, 65)               # Fondo de pantalla en rgb de 0 a 255
-    _soldier_size = (160,160)
+    _soldier_size = (142, 76)
+    """NUEVO."""
+    _frames_per_row = 4                             # Número de frames que contiene cada fila de la hoja de frames.
+    _soldier_frame_delay = 300                      # Tiempo de cada frame del personaje (en ms).
+    _soldier_speed = 12.5                           # Velocidad (en píxeles) del personaje.
+
     #Fps para correr juego:
-    _fps = 8
-    _soldier_speed = 10
+    _fps = 30
 
     #Imagenes de juego
-    _background_image_path = "../Media/jungla_image.jpg"
-    _soldier_image_path = "../Media/soldier_image.jpg"
+    # Rutas de las imágenes utilizadas.
+    _background_image_path = "../media/background_image.jpg"
+    _soldier_sheet_path = "../media/soldier-idle-sheet.png"
 
     @classmethod
     def get_screen_size (cls) ->tuple[int, int]:
@@ -42,9 +47,7 @@ class Configurations:
         """
         return cls._background_image_path
 
-    @classmethod
-    def get_soldier_image_path(cls) ->str:
-        return cls._soldier_image_path
+
 
     @classmethod
     def get_soldier_size(cls) ->tuple[int, int]:
@@ -57,3 +60,46 @@ class Configurations:
     @classmethod
     def get_soldier_speed(cls):
         return cls._soldier_speed
+
+    """NUEVO."""
+
+    @classmethod
+    def get_frames_per_row(cls) -> int:
+        """
+        Getter para _soldier_frames_per_row.
+        """
+        return cls._frames_per_row
+
+    """NUEVO."""
+
+    @classmethod
+    def get_soldier_frame_delay(cls) -> int:
+        """
+        Getter para _soldier_frame_delay.
+        """
+        return cls._soldier_frame_delay
+
+    """NUEVO."""
+
+    @classmethod
+    def get_soldier_speed(cls) -> float:
+        """
+        Getter para _soldier_speed.
+        """
+        return cls._soldier_speed
+
+    @classmethod
+    def get_background_image_path(cls) -> str:
+        """
+        Getter para _background_image_path.
+        """
+        return cls._background_image_path
+
+    """CAMBIO. El método de acceso cambió de acuerdo al cambio del parámetro utilizado."""
+
+    @classmethod
+    def get_soldier_sheet_path(cls) -> str:
+        """
+        Getter para _soldier_sheet_path.
+        """
+        return cls._soldier_sheet_path
