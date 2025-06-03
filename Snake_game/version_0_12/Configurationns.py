@@ -11,7 +11,7 @@ class Configurations:
     _screen_size = (1280, 720)               # Resolucion pantalla (ancho, alto)
     _game_title = "Snake game de Betho Betho"
     #_background = (28, 30, 50)               # Fondo de pantalla en rgb de 0 a 255
-    _fps = 8
+    _fps = 4
     _game_over_screen_time = 3
     #Cinfiguraciones de serpiente:
     _snake_block_size = 80                   #Tamaño del bloque de serpiente
@@ -23,7 +23,7 @@ class Configurations:
     #_apple_block_color = (50, 76, 89)
 
     #Rutas de archivos multimedia
-    _background_image_path = "../media/background_image.jpg"
+    _background_image_path = "../Media/background_image.jpg"
     _apple_image_path = ["../Media/apple1.png",
                          "../Media/apple2.png",
                          "../Media/apple3.png",]

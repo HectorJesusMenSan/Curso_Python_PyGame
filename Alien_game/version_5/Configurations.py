@@ -1,3 +1,5 @@
+
+
 class Configurations:
     """
     Clase que contiene todas las configuraciones
@@ -19,7 +21,7 @@ class Configurations:
     _soldier_speed = 12.5                           # Velocidad (en píxeles) del personaje.
 
     #Fps para correr juego:
-    _fps = 30
+    _fps = 60
 
     #Imagenes de juego
     # Rutas de las imágenes utilizadas.
@@ -96,10 +98,10 @@ class Configurations:
 
     @classmethod
     def get_shot_sheet_path(cls) -> str:
-        """Getter para la hoja de imagenes de disáro"""
+        """Getter para la hoja de imagenes de disparo"""
         return cls._shot_sheet_path
 
     @classmethod
     def get_shot_size(cls):
-        "Retorna tamaño de la imagen de disparo"
+        """Retorna tamaño de la imagen de disparo"""
         return cls._shot_size

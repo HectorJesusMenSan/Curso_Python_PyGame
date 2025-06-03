@@ -1,10 +1,9 @@
 import pygame
-from pygame import sprite
-
+from pygame.sprite import Sprite
 from Configurations import Configurations
 
 
-class Shot(sprite):
+class Shot(Sprite):
     def __init__(self, screen):
         super().__init__()
 
