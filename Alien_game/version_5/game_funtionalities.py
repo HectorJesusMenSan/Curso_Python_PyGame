@@ -6,7 +6,7 @@ from Soldier import Soldier
 from  Media import  Background
 from Shot import Shot
 
-def game_events ( soldier:Soldier ) -> bool:
+def game_events ( soldier:Soldier, shots: pygame.sprite.Group, screen ) -> bool:
     """
     Funcion que administra los eventos del juego
     :return: La bandera del fin del juego
@@ -25,6 +25,14 @@ def game_events ( soldier:Soldier ) -> bool:
                 soldier.is_moving_up = True
             if event.key == pygame.K_DOWN:
                 soldier.is_moving_down = True
+            if event.key == pygame.K_SPACE:
+                new_shot = Shot(screen, soldier)
+                new_shot.is_create_shot = True
+                shots.add(new_shot)
+
+
+
+
         #Cuando suelta boton
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP:
@@ -36,7 +44,7 @@ def game_events ( soldier:Soldier ) -> bool:
     return  game_over
 
 def screen_refresh(screen: pygame.surface.Surface, background: Background,
-                   soldier: Soldier, clock: pygame.time.Clock, shot:Shot)->None:
+                   soldier: Soldier, clock: pygame.time.Clock, shots:pygame.sprite.Group)->None:
     """
     Funcion que administra los elementos visuales.
     :return:
@@ -52,9 +60,10 @@ def screen_refresh(screen: pygame.surface.Surface, background: Background,
     soldier.blit(screen)
 
     #Se dibuja disparo y se anima
-    shot.update_animation()
-    shot.blit(screen)
-
+    if len(shots.sprites())>0:
+        for shot_block in shots.sprites():
+            shot_block.update_animation()
+    shots.draw(screen)
     # Se actualiza la pantalla, dando la impresión de movimiento.
     pygame.display.flip()
 

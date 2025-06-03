@@ -6,9 +6,9 @@ Descripcion: Se agregan nuevos archivos en el proyecto para mejorar la organizac
 
 Version 0.2:
 """
-
 #Importar modulos para videojuego
 import pygame
+from pygame.sprite import Group
 
 from Soldier import Soldier
 from Media import Background
@@ -40,7 +40,9 @@ def run_game() -> None:
     background = Background()
     #Se crea objeto Soldado
     soldier = Soldier(screen)
-    shot = Shot(screen)
+    #Se crea disparo y grupo de disparos
+    shots = Group()
+
 
 
 
@@ -48,9 +50,9 @@ def run_game() -> None:
     game_over = False
     while not game_over:
         #Verificacion de eventos (tecleado, clic y raton) del juego.
-        game_over = game_events(soldier)
+        game_over = game_events(soldier, shots, screen)
         # Se dibujan elementos graficos en pantalla:
-        screen_refresh(screen, background, soldier, clock, shot)
+        screen_refresh(screen, background, soldier, clock, shots)
     #Cerrar recursos.
     pygame.quit()
 

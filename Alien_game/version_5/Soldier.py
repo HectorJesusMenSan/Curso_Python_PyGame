@@ -132,3 +132,10 @@ class Soldier(Sprite):
     @is_moving_down.setter
     def is_moving_down(self, valor):
         self._is_moving_down = valor
+
+    @property
+    def soldier_rect(self):
+        return self.rect
+    @soldier_rect.setter
+    def soldier_rect(self, valor):
+        self.rect = valor

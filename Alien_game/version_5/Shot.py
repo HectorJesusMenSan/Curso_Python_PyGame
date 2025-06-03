@@ -1,11 +1,13 @@
 import pygame
 from pygame.sprite import Sprite
 from Configurations import Configurations
+from Soldier import  Soldier
 
 
 class Shot(Sprite):
-    def __init__(self, screen):
+    def __init__(self, screen, soldier:Soldier):
         super().__init__()
+        self._is_create_shot = False
 
         #Se genera lista para almacenar frames:
         self._frames = []
@@ -47,6 +49,15 @@ class Shot(Sprite):
         # Se obtiene el rectángulo que representa la posición del sprite.
         self.rect = self.image.get_rect()
 
+        #Posicion
+        self.rect.right = soldier.soldier_rect.right-125    #Quitar codigo duro
+        self.rect.centery = soldier.soldier_rect.centery -14
+
+
+        # Se incluyen los atributos para el movimiento.
+        self._rect_y = float(self.rect.x)
+        self._speed = Configurations.get_soldier_speed()  #Cambiar valor independiente
+
 
     def blit(self, screen: pygame.surface.Surface):
         """
@@ -75,3 +86,18 @@ class Shot(Sprite):
             # Finalmente, se verica si el índice ha recorrido todos los frames para volver al inicio de la lista.
             if self._frame_index >= len(self._frames):
                 self._frame_index = 0
+
+    def update_position(self):
+        """Metodo para actualizar posicion"""
+        ###CHECAR
+        ctd = True
+        if self._is_create_shot:
+            while ctd:
+                self.rect.x -= self._speed
+
+    @property
+    def is_create_shot(self):
+        return self._is_create_shot
+    @is_create_shot.setter
+    def is_create_shot(self, value):
+        self._is_create_shot = value

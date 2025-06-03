@@ -1,6 +1,5 @@
 
 import pygame
-from pygame.examples.cursors import image
 from pygame.sprite import Sprite
 from Configurationns import Configurations
 from random import randint, random, choice
