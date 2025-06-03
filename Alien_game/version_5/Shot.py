@@ -90,10 +90,9 @@ class Shot(Sprite):
     def update_position(self):
         """Metodo para actualizar posicion"""
         ###CHECAR
-        ctd = True
+
         if self._is_create_shot:
-            while ctd:
-                self.rect.x -= self._speed
+            self.rect.x -= self._speed
 
     @property
     def is_create_shot(self):

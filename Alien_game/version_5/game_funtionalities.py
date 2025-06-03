@@ -62,6 +62,7 @@ def screen_refresh(screen: pygame.surface.Surface, background: Background,
     #Se dibuja disparo y se anima
     if len(shots.sprites())>0:
         for shot_block in shots.sprites():
+            shot_block.update_position()
             shot_block.update_animation()
     shots.draw(screen)
     # Se actualiza la pantalla, dando la impresión de movimiento.
