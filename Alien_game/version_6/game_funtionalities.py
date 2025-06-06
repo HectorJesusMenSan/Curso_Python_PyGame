@@ -29,6 +29,7 @@ def game_events ( soldier:Soldier, shots: pygame.sprite.Group, screen ) -> bool:
                 new_shot = Shot(screen, soldier)
                 new_shot.is_create_shot = True
                 shots.add(new_shot)
+                soldier.shoots()
 
 
 

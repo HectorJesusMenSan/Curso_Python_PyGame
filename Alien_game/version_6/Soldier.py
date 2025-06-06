@@ -35,10 +35,10 @@ class Soldier(Sprite):
 
         """NUEVO."""
         # Se recortan los sprites de la hoja, se escalan y se guardan en la lista de sprites.
-        for i in range(Configurations.get_soldier_frame_par_colum()):
-            for j in range(sheet_frames_per_row):
-                x = j * soldier_frame_width
-                y = i * soldier_frame_height
+        for j in range(Configurations.get_soldier_frame_par_colum()):
+            for i in range(sheet_frames_per_row):
+                x = i * soldier_frame_width
+                y = j * soldier_frame_height
                 subsurface_rect = (x, y, soldier_frame_width, soldier_frame_height)
                 frame = soldier_sheet.subsurface(subsurface_rect)
 
@@ -49,12 +49,12 @@ class Soldier(Sprite):
         """NUEVO."""
         # Se incluyen los atributos para la animación.
         self._last_update_time = pygame.time.get_ticks()    # Se relaciona con el tiempo de actualización de cada frame.
-        self._frame_index = 0                               # Índice de la lista.
-
         """NUEVO."""
         # Se selecciona la primera imagen a mostrar.
+        self._frame_index = 0
         self.image = self._frames[self._frame_index]
-        self._frame_index = 1
+        self._frame_index = 0
+
 
         # Se obtiene el rectángulo que representa la posición del sprite.
         self.rect = self.image.get_rect()
@@ -107,28 +107,39 @@ class Soldier(Sprite):
         """
         # Se verifica si el tiempo transcurrido es mayor o igual al tiempo establecido para actualizar el frame.
         current_time = pygame.time.get_ticks()
-        frame_delay = Configurations.get_soldier_frame_delay()
-        needs_refresh = (current_time - self._last_update_time) >= frame_delay
+
 
         if needs_refresh:
+            self._last_update_time = current_time
 
             if self._is_shooting:
 
+                self.image = self._frames[self._frame_index]
+                self._frame_index += 1
+                if self._frame_index >= len(self._frames) :
+
+                    self.image = self._frames[self._frame_index]
+                    self._frame_index = 0
+                    self._is_shooting = False
+        needs_refresh = (current_time - self._last_update_time) >= frame_delay
+        frame_delay = Configurations.get_soldier_frame_delay()
+
+
+
             # En caso verdadero, se actualiza el frame por el siguiente en la lista.
             # Además, se actualizan los atributos para resetear el tiempo y actualizar el índice.
+
             self.image = self._frames[self._frame_index]
             self._last_update_time = current_time
             self._frame_index += 1
 
             # Finalmente, se verica si el índice ha recorrido todos los frames para volver al inicio de la lista.
-            if self._frame_index >= len(self._frames)/2:
+            if self._frame_index >= len(self._frames):
                 self._frame_index = 0
 
     def shoots(self)->None:
         self._is_shooting = True
         self._frame_index = 4
-        if self._frame_index >= len(self._frames):
-            self._frame_index = 0
         #Indice a 4, tiempo.
 
     @property

@@ -18,7 +18,7 @@ class Configurations:
 
     _frames_per_row = 4                             # Número de frames que contiene cada fila de la hoja de frames.
 
-    _soldier_frame_delay = 300                      # Tiempo de cada frame del personaje (en ms).
+    _soldier_frame_delay = 100                      # Tiempo de cada frame del personaje (en ms).
     _soldier_speed = 12.5                           # Velocidad (en píxeles) del personaje.
     _soldier_frame_par_colum = 2                    #El numero de columnas
     #Fps para correr juego:
