@@ -6,57 +6,52 @@ Descripcion: Se agregan nuevos archivos en el proyecto para mejorar la organizac
 
 Version 0.2:
 """
-#Importar modulos para videojuego
-
-
-
-
-# Se importan los módulos necesarios.
+from random import randint
 import pygame
 from Configurations import Configurations
-from game_funtionalities import game_events, screen_refresh
+from game_funtionalities import game_event,screen_refresh
 from Media import Background
 from Soldier import Soldier
 from pygame.sprite import Group
-
-
-def run_game() -> None:
+from Alien import Alien
+def run_game()->None:
     """
-    Función principal del videojuego.
+    Función principal.
+    :return: Nada.
     """
-    # Se inicializa el módulo de pygame y se realizan las configuraciones iniciales.
+    #Inicia modulo pygame
     pygame.init()
-    screen_size = Configurations.get_screen_size()
-    screen = pygame.display.set_mode(screen_size)
-    clock = pygame.time.Clock()  # Se usa para controlar la velocidad de fotogramas (FPS).
+    screen_size=Configurations.get_screen_size()
+    # Se inicializa la pantalla
+    screen = pygame.display.set_mode(Configurations.get_screen_size())
+    pygame.display.set_caption(Configurations.get_game_title())
+    clock = pygame.time.Clock()
 
-    # Se configura el título de la ventana.
-    game_title = Configurations.get_game_title()
-    pygame.display.set_caption(game_title)
-
-    # Se crea el objeto del fondo de pantalla.
     background = Background()
+    soldier = Soldier(screen)
+    aliens=Group()
+    min_aliens=5
+    aliens_to_spawn=min_aliens + randint(0, 10)
+    for _ in range(aliens_to_spawn):
+        alien=Alien(screen)
+        aliens.add(alien)
 
-    # Se crea el objeto del soldado (personaje principal).
-    soldier = Soldier(screen, None)
+    #Se crea el grupo para los shots
+    #Mofificar estas líneas para que se aplique a los grupos
+    shots=Group()
+    # Ciclo principal del juego
 
-    # Se crea el grupo para almacenar los disparos del soldado.
-    gunshots = Group()
-
-    # Ciclo principal del videojuego.
     game_over = False
+
     while not game_over:
-        # Función que administra los eventos del juego.
-        game_over = game_events(soldier, gunshots)
+        game_over = game_event(soldier,shots,screen)
 
-        # Función que administra los elementos de la pantalla.
-        screen_refresh(screen, clock, background, soldier, gunshots)
-
-    # Cierra todos los recursos del módulo pygame.
+        # Se dibuja los elementos gráficos en la pantalla
+        screen_refresh(screen, clock, background,soldier,shots,aliens)
+        # Se cierran los recursos del juego
     pygame.quit()
 
 
-
-""" %%%%%%%     CÓDIGO A NIVEL DE MÓDULO    %%%%%%%%%%%%%%%%%%%%% """
-if __name__ == "__main__":
+# Código a nivel módulo.
+if __name__ == '__main__':
     run_game()
